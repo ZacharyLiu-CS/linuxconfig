@@ -1,4 +1,4 @@
-sudo apt install ranger
+ranger
 vim
 tmux
 python
