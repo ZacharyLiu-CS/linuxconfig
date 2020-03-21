@@ -13,6 +13,7 @@ chsh -s /bin/zsh
 sudo cp ~/linuxconfig/.vimrc ~
 git config --global user.email "liuzhenm@mail.ustc.edu.cn"
 git config --global user.name "liuzhen"
+git config --global push.default matching
 git clone https://github.com/glommy-left-hand/linuxconfig.git ~
 sudo apt install openssh-server
 sudo systemctl enable ssh
