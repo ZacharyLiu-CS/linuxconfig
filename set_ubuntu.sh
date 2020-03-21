@@ -1,24 +1,23 @@
-sudo pacman-mirrors -i -c China -m rank 
-sudo pacman -Syyu
-sudo pacman -S neovim
-sudo sed -i '$a[archlinuxcn]\nSigLevel = Optional TrustedOnly\nServer = https://mirrors.ustc.edu.cn/archlinuxcn/$arch' /etc/pacman.conf
-sudo pacman -Syy && sudo pacman -S archlinuxcn-keyring
-sudo pacman -S yay
-sudo pacman -S nodejs
-sudo yay -S zsh
+sudo sed -i 's/cn.archive.ubuntu.com/mirrors.ustc.edu.cn/g' /etc/apt/sources.list
+sudo apt update
+sudo apt upgrade
+sudo apt install vim
+sudo apt install zsh
+sudo apt install build-essential
+sudo apt install git
+sudo apt install htop
+sudo apt install nodejs
+sudo apt install curl
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 chsh -s /bin/zsh
 sudo cp ~/linuxconfig/.vimrc ~
-sudo cp ~/linuxconfig/.zshrc ~
 git config --global user.email "liuzhenm@mail.ustc.edu.cn"
 git config --global user.name "liuzhen"
-sudo pacman -S net-tools
-sudo pacman -S gdb
-sudo pacman -S wireshark-qt
-sudo pacman -S openssh
+git clone https://github.com/glommy-left-hand/linuxconfig.git ~
+sudo apt install openssh-server
 sudo systemctl enable ssh
 sudo systemctl start sshd
-sudo pacman -S tmux
+sudo apt install tmux
 cp ~/linuxconfig/.tmux.conf ~
 git clone git://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
 git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
