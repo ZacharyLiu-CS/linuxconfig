@@ -15,6 +15,7 @@ set pastetoggle=<F11> "F11来支持切换paste和nopaste状态。"
 set cindent "c/c++自动缩进"
 set smartindent
 set autoindent"参考上一行的缩进方式进行自动缩进"
+set expandtab
 set tabstop=2
 set shiftwidth=2
 set softtabstop=2
@@ -75,9 +76,14 @@ Plug 'vim-scripts/vim-auto-save'
 "Theme
 Plug 'ajmwagar/vim-deus'
 
+"auto pairs
+Plug 'jiangmiao/auto-pairs'
+
 call plug#end()
 
-
+let g:coc_global_extensions = [
+      \ 'coc-explorer',
+      \ 'coc-clangd']
 "coc explorer config"
 :nmap <space>e :CocCommand explorer<CR>
 
@@ -107,7 +113,7 @@ endif
 " Make <CR> auto-select the first completion item and notify coc.nvim to
 " format on enter, <cr> could be remapped by other vim plugin
 inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm()
-                              \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
+      \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
 
 " Use `[g` and `]g` to navigate diagnostics
 " Use `:CocDiagnostics` to get all diagnostics of current buffer in location list.
@@ -201,7 +207,7 @@ let g:indent_guides_guide_size            = 1  " 指定对齐线的尺寸
 let g:indent_guides_start_level           = 2  " 从第二层开始可视化显示缩进
 
 "vim-auto-save configuration"
-let g:auto_save_silent = 1 
+let g:auto_save_silent = 1
 autocmd FileType markdown let g:auto_save = 1
 
 "Deue theme configuration
@@ -214,3 +220,11 @@ let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
 set background=dark    " Setting dark mode
 colorscheme deus
 let g:deus_termcolors=256
+
+
+"auto pairs configuration
+let g:AutoPairs = {'(':')', '[':']', '{':'}', '<':'>',"'":"'",'"':'"', '```':'`````', '"""':'"""""', "'''":"'''''", "`":"`"}
+
+
+"autoformat configuration
+nnoremap \f :Autoformat<CR>
