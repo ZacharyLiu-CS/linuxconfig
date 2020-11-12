@@ -1,27 +1,27 @@
 let g:python3_host_prog = '/home/zach/miniconda3/envs/neovim_py/bin/python'
 
-set wildmenu"按TAB键时命令行自动补齐"
-set ignorecase"忽略大小写"
-set number"显示行号"
-set relativenumber"相对行号"
-set visualbell"禁止响铃"
-set ruler"显示当前光标位置"
-set autoread"文件在Vim之外修改过，自动重新读入"
-set autowrite"设置自动保存内容"
-set autochdir"当前目录随着被编辑文件的改变而改变"
-set nocp"使用vim而非vi"
-set mouse=a"开启鼠标支持"
-set pastetoggle=<F11> "F11来支持切换paste和nopaste状态。"
+set wildmenu "按TAB键时命令行自动补齐"
+
+set ignorecase "忽略大小写"
+set number "显示行号"
+set relativenumber "相对行号"
+set visualbell "禁止响铃"
+set ruler "显示当前光标位置"
+set autoread "文件在Vim之外修改过，自动重新读入"
+set autowrite "设置自动保存内容"
+set autochdir "当前目录随着被编辑文件的改变而改变"
+set nocp "使用vim而非vi"
+set mouse=a "开启鼠标支持"
 set cindent "c/c++自动缩进"
 set smartindent
-set autoindent"参考上一行的缩进方式进行自动缩进"
-set expandtab
+set autoindent "参考上一行的缩进方式进行自动缩进"
+set expandtab "repace <tab> with space
 set tabstop=2
 set shiftwidth=2
 set softtabstop=2
 set smarttab
-set hlsearch "开启搜索结果的高亮显示"
-set incsearch "边输入边搜索(实时搜索)"
+set hlsearch "开启搜索结果的高亮显示
+set incsearch "边输入边搜索(实时搜索)
 set cursorline
 set cursorbind
 " TextEdit might fail if hidden is not set.
@@ -36,9 +36,9 @@ set autoread
 set noswapfile
 set nobackup
 set undofile
-set backupdir=~/.vim/.backup//
-set directory=~/.vim/.swp//
-set undodir=~/.vim/.undo//
+set backupdir=~/.vim/.backup/
+set directory=~/.vim/.swp/
+set undodir=~/.vim/.undo/
 
 
 " Give more space for displaying messages.
@@ -51,6 +51,34 @@ set updatetime=300
 " Don't pass messages to |ins-completion-menu|.
 set shortmess+=c
 
+" set <LEADER> as <SPACE>
+let mapleader=" "
+" make ; works as :
+noremap ; :
+
+" cursor movement between window
+noremap <LEADER>w <C-w>w
+noremap <LEADER>k <C-w>k
+noremap <LEADER>j <C-w>j
+noremap <LEADER>h <C-w>h
+noremap <LEADER>l <C-w>l
+
+
+" Disable the default s key
+noremap s <nop>
+
+" split the screens to up (horizontal), down (horizontal), left (vertical), right (vertical)
+noremap sj :set nosplitbelow<CR>:split<CR>:set splitbelow<CR>
+noremap sk :set splitbelow<CR>:split<CR>
+noremap sh :set nosplitright<CR>:vsplit<CR>:set splitright<CR>
+noremap sl :set splitright<CR>:vsplit<CR>
+
+
+noremap <leader><up> :res +5<CR>
+noremap <leader><down> :res -5<CR>
+noremap <leader><left> :vertical resize-5<CR>
+noremap <leader><right> :vertical resize+5<CR>
+
 
 syn on "开启语法高亮功能"
 filetype indent on "根据文件类型进行缩进"
@@ -58,6 +86,11 @@ filetype on "启动文件类型检查"
 filetype plugin on "运行vim加载文件类型插件"
 
 map <silent>  <C-A>  gg v G "Ctrl-A 选中所有内容"
+
+nnoremap <silent> <C-j> 5j
+nnoremap <silent> <C-k> 5k
+nnoremap <silent> <C-h> 5h
+nnoremap <silent> <C-l> 5l
 
 call plug#begin('~/.vim/plugged')
 Plug 'vim-airline/vim-airline'
@@ -79,13 +112,25 @@ Plug 'ajmwagar/vim-deus'
 "auto pairs
 Plug 'jiangmiao/auto-pairs'
 
+" cxx highlight
+Plug 'jackguo380/vim-lsp-cxx-highlight'
+
+" comment plugin
+Plug 'tomtom/tcomment_vim'
+
+" float terminal
+Plug 'voldikss/vim-floaterm'
+
 call plug#end()
+
 
 let g:coc_global_extensions = [
       \ 'coc-explorer',
+      \ 'coc-rls',
+      \ 'coc-json',
       \ 'coc-clangd']
 "coc explorer config"
-:nmap <space>e :CocCommand explorer<CR>
+:nmap <space>e :CocCommand explorer --preset floating<CR>
 
 "coc config"
 
@@ -117,12 +162,14 @@ inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm()
 
 " Use `[g` and `]g` to navigate diagnostics
 " Use `:CocDiagnostics` to get all diagnostics of current buffer in location list.
-map <silent> [g <Plug>(coc-diagnostic-prev)
+
+nmap <silent> [g <Plug>(coc-diagnostic-prev)
 nmap <silent> ]g <Plug>(coc-diagnostic-next)
 
 " GoTo code navigation.
 nmap <silent> gd <Plug>(coc-definition)
-nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gc <Plug>(coc-declaration)
+nmap <silent> gt <Plug>(coc-type-definition)
 nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
 
@@ -227,4 +274,18 @@ let g:AutoPairs = {'(':')', '[':']', '{':'}', '<':'>',"'":"'",'"':'"', '```':'``
 
 
 "autoformat configuration
-nnoremap \f :Autoformat<CR>
+nnoremap <LEADER>f :Autoformat<CR>
+
+"tcomment vim configuration
+let g:tcomment_textobject_inlinecomment = ''
+nmap <LEADER>cn g>c
+vmap <LEADER>cn g>
+nmap <LEADER>cu g<c
+vmap <LEADER>cu g<
+
+" float terminal configuration
+nnoremap <LEADER>st :FloatermNew --height=0.6 --width=0.6 --wintype=floating --name=floaterm1 --autoclose=2<CR>
+nnoremap <LEADER>fzf :FloatermNew --height=0.6 --width=0.6 --wintype=floating --name=floaterm2 --autoclose=2 fzf --preview 'cat {}'<CR>
+nnoremap <LEADER>lg :FloatermNew --height=0.6 --width=0.6 --wintype=floating --name=floaterm3 --autoclose=2 lazygit<CR>
+nnoremap <LEADER>ra :FloatermNew --height=0.6 --width=0.6 --wintype=floating --name=floaterm4 --autoclose=2 ranger <CR>
+
