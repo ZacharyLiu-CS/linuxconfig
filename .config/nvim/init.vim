@@ -1,7 +1,6 @@
 let g:python3_host_prog = '/home/zach/miniconda3/envs/neovim_py/bin/python'
 
 set wildmenu "按TAB键时命令行自动补齐"
-
 set ignorecase "忽略大小写"
 set number "显示行号"
 set relativenumber "相对行号"
@@ -23,16 +22,14 @@ set smarttab
 set hlsearch "开启搜索结果的高亮显示
 set incsearch "边输入边搜索(实时搜索)
 set cursorline
-set cursorbind
 " TextEdit might fail if hidden is not set.
 set hidden
-set wildmenu
 " Some servers have issues with backup files, see #649.
 set nowritebackup
 set listchars=tab:»■,trail:■
 set list
 set autoread
-
+set scrolloff=999
 set noswapfile
 set nobackup
 set undofile
@@ -62,7 +59,6 @@ noremap <LEADER>k <C-w>k
 noremap <LEADER>j <C-w>j
 noremap <LEADER>h <C-w>h
 noremap <LEADER>l <C-w>l
-
 
 " Disable the default s key
 noremap s <nop>
