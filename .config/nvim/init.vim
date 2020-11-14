@@ -117,6 +117,10 @@ Plug 'tomtom/tcomment_vim'
 " float terminal
 Plug 'voldikss/vim-floaterm'
 
+" vim multiple cursors
+Plug 'terryma/vim-multiple-cursors'
+
+
 call plug#end()
 
 
@@ -189,8 +193,8 @@ autocmd CursorHold * silent call CocActionAsync('highlight')
 nmap <leader>rn <Plug>(coc-rename)
 
 " Formatting selected code.
-xmap <leader>f  <Plug>(coc-format-selected)
-nmap <leader>f  <Plug>(coc-format-selected)
+" xmap <leader>f  <Plug>(coc-format-selected)
+" nmap <leader>f  <Plug>(coc-format-selected)
 
 augroup mygroup
   autocmd!
@@ -271,7 +275,7 @@ let g:AutoPairs = {'(':')', '[':']', '{':'}', '<':'>',"'":"'",'"':'"', '```':'``
 
 "autoformat configuration
 nnoremap <LEADER>f :Autoformat<CR>
-
+xnoremap <LEADER>f :Autoformat<CR>
 "tcomment vim configuration
 let g:tcomment_textobject_inlinecomment = ''
 nmap <LEADER>cn g>c
@@ -281,7 +285,20 @@ vmap <LEADER>cu g<
 
 " float terminal configuration
 nnoremap <LEADER>st :FloatermNew --height=0.6 --width=0.6 --wintype=floating --name=floaterm1 --autoclose=2<CR>
-nnoremap <LEADER>fzf :FloatermNew --height=0.6 --width=0.6 --wintype=floating --name=floaterm2 --autoclose=2 fzf --preview 'cat {}'<CR>
+nnoremap <LEADER>zf :FloatermNew --height=0.6 --width=0.6 --wintype=floating --name=floaterm2 --autoclose=2 fzf --preview 'cat {}'<CR>
 nnoremap <LEADER>lg :FloatermNew --height=0.6 --width=0.6 --wintype=floating --name=floaterm3 --autoclose=2 lazygit<CR>
 nnoremap <LEADER>ra :FloatermNew --height=0.6 --width=0.6 --wintype=floating --name=floaterm4 --autoclose=2 ranger <CR>
 
+
+" vim multiple cursors configuration
+let g:multi_cursor_use_default_mapping=0
+
+" Default mapping
+let g:multi_cursor_start_word_key      = '<C-n>'
+let g:multi_cursor_select_all_word_key = '<A-n>'
+let g:multi_cursor_start_key           = 'g<C-n>'
+let g:multi_cursor_select_all_key      = 'g<A-n>'
+let g:multi_cursor_next_key            = '<C-n>'
+let g:multi_cursor_prev_key            = '<C-p>'
+let g:multi_cursor_skip_key            = '<C-x>'
+let g:multi_cursor_quit_key            = '<Esc>'
