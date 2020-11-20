@@ -36,7 +36,7 @@ set undofile
 set backupdir=~/.vim/.backup/
 set directory=~/.vim/.swp/
 set undodir=~/.vim/.undo/
-
+set cc=100
 
 " Give more space for displaying messages.
 set cmdheight=1
@@ -118,7 +118,6 @@ Plug 'tomtom/tcomment_vim'
 Plug 'voldikss/vim-floaterm'
 
 " vim multiple cursors
-Plug 'terryma/vim-multiple-cursors'
 
 
 call plug#end()
@@ -290,15 +289,3 @@ nnoremap <LEADER>lg :FloatermNew --height=0.6 --width=0.6 --wintype=floating --n
 nnoremap <LEADER>ra :FloatermNew --height=0.6 --width=0.6 --wintype=floating --name=floaterm4 --autoclose=2 ranger <CR>
 
 
-" vim multiple cursors configuration
-let g:multi_cursor_use_default_mapping=0
-
-" Default mapping
-let g:multi_cursor_start_word_key      = '<C-n>'
-let g:multi_cursor_select_all_word_key = '<A-n>'
-let g:multi_cursor_start_key           = 'g<C-n>'
-let g:multi_cursor_select_all_key      = 'g<A-n>'
-let g:multi_cursor_next_key            = '<C-n>'
-let g:multi_cursor_prev_key            = '<C-p>'
-let g:multi_cursor_skip_key            = '<C-x>'
-let g:multi_cursor_quit_key            = '<Esc>'
