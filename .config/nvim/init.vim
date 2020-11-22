@@ -118,7 +118,7 @@ Plug 'tomtom/tcomment_vim'
 Plug 'voldikss/vim-floaterm'
 
 " vim multiple cursors
-
+Plug 'mg979/vim-visual-multi', {'branch': 'master'}
 
 call plug#end()
 
@@ -288,4 +288,13 @@ nnoremap <LEADER>zf :FloatermNew --height=0.6 --width=0.6 --wintype=floating --n
 nnoremap <LEADER>lg :FloatermNew --height=0.6 --width=0.6 --wintype=floating --name=floaterm3 --autoclose=2 lazygit<CR>
 nnoremap <LEADER>ra :FloatermNew --height=0.6 --width=0.6 --wintype=floating --name=floaterm4 --autoclose=2 ranger <CR>
 
-
+"vim-visual-multi
+let g:VM_maps                       = {}
+let g:VM_maps['Find Under']         = '<C-k>'
+let g:VM_maps['Find Subword Under'] = '<C-k>'
+let g:VM_maps['Find Next']          = 'n'
+let g:VM_maps['Find Prev']          = ''
+let g:VM_maps['Remove Region']      = 'q'
+let g:VM_maps['Skip Region']        = '<C-n>'
+let g:VM_maps["Undo"]               = 'u'
+let g:VM_maps["Redo"]               = '<C-r>'
