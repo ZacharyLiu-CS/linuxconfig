@@ -120,6 +120,9 @@ Plug 'voldikss/vim-floaterm'
 " vim multiple cursors
 Plug 'mg979/vim-visual-multi', {'branch': 'master'}
 
+" vista.vim : tag bar in Vim
+Plug 'liuchengxu/vista.vim'
+
 call plug#end()
 
 
@@ -298,3 +301,15 @@ let g:VM_maps['Remove Region']      = 'q'
 let g:VM_maps['Skip Region']        = '<C-n>'
 let g:VM_maps["Undo"]               = 'u'
 let g:VM_maps["Redo"]               = '<C-r>'
+
+" vista.vim 
+noremap <LEADER>v :Vista!!<CR>
+noremap <c-t> :silent! Vista finder coc<CR>
+let g:vista_icon_indent = ["╰─▸ ", "├─▸ "]
+let g:vista_default_executive = 'coc'
+let g:vista_fzf_preview = ['right:50%']
+let g:vista#renderer#enable_icon = 1
+let g:vista#renderer#icons = {
+\   "function": "\uf794",
+\   "variable": "\uf71b",
+\  }
