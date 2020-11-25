@@ -123,6 +123,12 @@ Plug 'mg979/vim-visual-multi', {'branch': 'master'}
 " vista.vim : tag bar in Vim
 Plug 'liuchengxu/vista.vim'
 
+" good tab bar for opened files in Vim
+Plug 'mg979/vim-xtabline'
+
+" colorful brackets for better visual effect
+Plug 'luochen1990/rainbow'
+
 call plug#end()
 
 
@@ -313,3 +319,15 @@ let g:vista#renderer#icons = {
 \   "function": "\uf794",
 \   "variable": "\uf71b",
 \  }
+
+" xtabline
+let g:xtabline_settings = {}
+let g:xtabline_settings.enable_mappings = 0
+let g:xtabline_settings.tabline_modes = ['tabs', 'buffers']
+let g:xtabline_settings.enable_persistance = 0
+let g:xtabline_settings.last_open_first = 1
+noremap to :XTabCycleMode<CR>
+noremap \p :echo expand('%:p')<CR>
+
+" config for rainbow
+let g:rainbow_active = 1
