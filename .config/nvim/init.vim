@@ -33,6 +33,10 @@ set scrolloff=999
 set noswapfile
 set nobackup
 set undofile
+silent !mkdir -p ~/.vim/.backup/
+silent !mkdir -p ~/.vim/.swp/
+silent !mkdir -p ~/.vim/.undo/
+
 set backupdir=~/.vim/.backup/
 set directory=~/.vim/.swp/
 set undodir=~/.vim/.undo/
@@ -128,6 +132,9 @@ Plug 'mg979/vim-xtabline'
 
 " colorful brackets for better visual effect
 Plug 'luochen1990/rainbow'
+
+" Undo Tree
+Plug 'mbbill/undotree'
 
 call plug#end()
 
@@ -316,9 +323,9 @@ let g:vista_default_executive = 'coc'
 let g:vista_fzf_preview = ['right:50%']
 let g:vista#renderer#enable_icon = 1
 let g:vista#renderer#icons = {
-\   "function": "\uf794",
-\   "variable": "\uf71b",
-\  }
+      \   "function": "\uf794",
+      \   "variable": "\uf71b",
+      \  }
 
 
 " Tab management
@@ -342,3 +349,21 @@ noremap \p :echo expand('%:p')<CR>
 
 " config for rainbow
 let g:rainbow_active = 1
+
+" Undo tree configuration
+" ===
+" === Undotree
+" ===
+noremap L :UndotreeToggle<CR>
+let g:undotree_DiffAutoOpen = 1
+let g:undotree_SetFocusWhenToggle = 1
+let g:undotree_ShortIndicators = 1
+let g:undotree_WindowLayout = 2
+let g:undotree_DiffpanelHeight = 8
+let g:undotree_SplitWidth = 24
+function g:Undotree_CustomMap()
+  nmap <buffer> u <plug>UndotreeNextState
+  nmap <buffer> r <plug>UndotreePreviousState
+  nmap <buffer> U 5<plug>UndotreeNextState
+  nmap <buffer> R 5<plug>UndotreePreviousState
+endfunc
