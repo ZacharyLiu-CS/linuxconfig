@@ -136,6 +136,9 @@ Plug 'luochen1990/rainbow'
 " Undo Tree
 Plug 'mbbill/undotree'
 
+" prepare Code
+Plug 'ZacharyLiu-CS/prepare-code'
+
 call plug#end()
 
 
@@ -309,7 +312,7 @@ let g:VM_maps                       = {}
 let g:VM_maps['Find Under']         = '<C-k>'
 let g:VM_maps['Find Subword Under'] = '<C-k>'
 let g:VM_maps['Find Next']          = 'n'
-let g:VM_maps['Find Prev']          = ''
+let g:VM_maps['Find Prev']          = 'N'
 let g:VM_maps['Remove Region']      = 'q'
 let g:VM_maps['Skip Region']        = '<C-n>'
 let g:VM_maps["Undo"]               = 'u'
@@ -367,3 +370,6 @@ function g:Undotree_CustomMap()
   nmap <buffer> U 5<plug>UndotreeNextState
   nmap <buffer> R 5<plug>UndotreePreviousState
 endfunc
+
+let g:prepare_code_name="zhenliu"
+let g:prepare_code_email_address="liuzhenm@mail.ustc.edu.cn"
