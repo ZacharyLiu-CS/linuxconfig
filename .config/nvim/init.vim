@@ -56,6 +56,9 @@ set shortmess+=c
 let mapleader=" "
 " make ; works as :
 noremap ; :
+"make tab work as / in noremal mode
+noremap <TAB> /
+
 
 " cursor movement between window
 noremap <LEADER>w <C-w>w
@@ -87,10 +90,39 @@ filetype plugin on "运行vim加载文件类型插件"
 
 map <silent>  <C-A>  gg v G "Ctrl-A 选中所有内容"
 
-nnoremap <silent> <C-j> 5j
-nnoremap <silent> <C-k> 5k
-nnoremap <silent> <C-h> 5h
-nnoremap <silent> <C-l> 5l
+nnoremap <silent> U 5j
+nnoremap <silent> E 5k
+
+
+" Compile function
+noremap <leader>r :call CompileAndRun()<CR>
+func! CompileAndRun()
+  exec "w"
+  if &filetype == 'c'
+    exec "!gcc % -o %<"
+    exec "!time ./%<"
+  elseif &filetype == 'cpp'
+    set splitbelow
+    exec "!g++ -std=c++11 % -Wall -o %<"
+    :sp
+    :res -15
+    :term ./%<
+  elseif &filetype == 'java'
+    exec "!javac %"
+    exec "!time java %<"
+  elseif &filetype == 'sh'
+    :!time bash %
+  elseif &filetype == 'python'
+    set splitbelow
+    :sp
+    :term python3 %
+  elseif &filetype == 'html'
+    silent! exec "!".g:mkdp_browser." % &"
+  elseif &filetype == 'markdown'
+    exec "InstantMarkdownPreview"
+  endif
+endfunc
+
 
 call plug#begin('~/.vim/plugged')
 Plug 'vim-airline/vim-airline'
@@ -138,6 +170,12 @@ Plug 'mbbill/undotree'
 
 " prepare Code
 Plug 'ZacharyLiu-CS/prepare-code'
+
+" preview markdown instantly
+Plug 'suan/vim-instant-markdown', {'for': 'markdown'}
+
+" generate table of contents(toc)
+Plug 'mzlogin/vim-markdown-toc'
 
 call plug#end()
 
@@ -271,6 +309,8 @@ set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
 let g:indent_guides_guide_size            = 1  " 指定对齐线的尺寸
 let g:indent_guides_start_level           = 2  " 从第二层开始可视化显示缩进
 
+
+"start to configure the plugs managed by vim-plug
 "vim-auto-save configuration"
 let g:auto_save_silent = 1
 autocmd FileType markdown let g:auto_save = 1
@@ -348,7 +388,7 @@ let g:xtabline_settings.tabline_modes = ['tabs', 'buffers']
 let g:xtabline_settings.enable_persistance = 0
 let g:xtabline_settings.last_open_first = 1
 noremap to :XTabCycleMode<CR>
-noremap \p :echo expand('%:p')<CR>
+" noremap \p :echo expand('%:p')<CR>
 
 " config for rainbow
 let g:rainbow_active = 1
@@ -373,3 +413,27 @@ endfunc
 
 let g:prepare_code_name="zhenliu"
 let g:prepare_code_email_address="liuzhenm@mail.ustc.edu.cn"
+
+" vim-instant-makrdown configuration
+let g:instant_markdown_autostart = 0
+let g:instant_markdown_slow = 1
+
+" vim-markdown-toc command
+let g:vmt_auto_update_on_save = 1
+let g:vmt_cycle_list_item_markers = 1
+" the vim-markdown-toc command is listed below
+" 1. :GenTocGFM
+" Generate table of contents in GFM link style.
+" This command is suitable for Markdown files in GitHub repositories, like README.md, and Markdown files for GitBook.
+"
+" 2. :GenTocRedcarpet
+" Generate table of contents in Redcarpet link style.
+" This command is suitable for Jekyll or anywhere else use Redcarpet as its Markdown parser.
+"
+" 3. :GenTocGitLab
+"
+" Generate table of contents in GitLab link style.
+" This command is suitable for GitLab repository and wiki.
+"
+" 4. :GenTocMarked
+" Generate table of contents for iamcco/markdown-preview.vim which use Marked markdown parser.
