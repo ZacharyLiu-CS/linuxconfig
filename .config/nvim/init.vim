@@ -29,7 +29,7 @@ set nowritebackup
 set listchars=tab:»■,trail:■
 set list
 set autoread
-set scrolloff=999
+set scrolloff=10
 set noswapfile
 set nobackup
 set undofile
@@ -328,7 +328,7 @@ let g:deus_termcolors=256
 
 
 "auto pairs configuration
-let g:AutoPairs = {'(':')', '[':']', '{':'}', '<':'>',"'":"'",'"':'"', '```':'`````', '"""':'"""""', "'''":"'''''", "`":"`"}
+let g:AutoPairs = {'(':')', '[':']', '{':'}', '<':'>',"'":"'",'"':'"' ,"<<":""}
 
 
 "autoformat configuration
