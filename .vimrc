@@ -57,8 +57,6 @@ filetype indent on "根据文件类型进行缩进"
 filetype on "启动文件类型检查"
 filetype plugin on "运行vim加载文件类型插件"
 
-map <silent>  <C-A>  gg v G "Ctrl-A 选中所有内容"
-
 nnoremap <silent> <C-j> 5j
 nnoremap <silent> <C-k> 5k
 nnoremap <silent> <C-h> 5h
