@@ -1,26 +1,25 @@
 let g:python3_host_prog = '/home/zach/miniconda3/envs/neovim_py/bin/python'
 
-set wildmenu "按TAB键时命令行自动补齐"
-set ignorecase "忽略大小写"
-set number "显示行号"
-set relativenumber "相对行号"
-set visualbell "禁止响铃"
-set ruler "显示当前光标位置"
-set autoread "文件在Vim之外修改过，自动重新读入"
-set autowrite "设置自动保存内容"
-set autochdir "当前目录随着被编辑文件的改变而改变"
-set nocp "使用vim而非vi"
-set mouse=a "开启鼠标支持"
-set cindent "c/c++自动缩进"
-set smartindent
-set autoindent "参考上一行的缩进方式进行自动缩进"
+set wildmenu "auto completion while tapping tab
+set ignorecase "ignore case
+set number "show line number
+set relativenumber "relative number
+set visualbell "disable dell
+set ruler "show the ruler of the cursor
+set autoread "auto read while file is modified outside
+set autowrite "set auto save content
+set autochdir "make the dir change according to the file
+set nocp "use vim instead of vi
+set mouse=a "open mouse support
+set smartindent "c/c++ auto indent"
+set autoindent "auto indent refet to the indentation of the previous line
 set expandtab "repace <tab> with space
 set tabstop=2
 set shiftwidth=2
 set softtabstop=2
 set smarttab
-set hlsearch "开启搜索结果的高亮显示
-set incsearch "边输入边搜索(实时搜索)
+set hlsearch "highlight search result
+set incsearch "real time search
 set cursorline
 " TextEdit might fail if hidden is not set.
 set hidden
@@ -33,15 +32,12 @@ set scrolloff=10
 set noswapfile
 set nobackup
 set undofile
-silent !mkdir -p ~/.vim/.backup/
-silent !mkdir -p ~/.vim/.swp/
-silent !mkdir -p ~/.vim/.undo/
-
-set backupdir=~/.vim/.backup/
-set directory=~/.vim/.swp/
+if empty(glob('~/.vim/undo'))
+  silent !mkdir -p ~/.vim/undo
+endif
 set undodir=~/.vim/.undo/
 set cc=100
-
+"
 " Give more space for displaying messages.
 set cmdheight=1
 
@@ -58,7 +54,6 @@ let mapleader=" "
 noremap ; :
 "make tab work as / in noremal mode
 noremap <TAB> /
-
 
 " cursor movement between window
 noremap <LEADER>w <C-w>w
@@ -412,7 +407,7 @@ endfunc
 let g:prepare_code_name="zhenliu"
 let g:prepare_code_email_address="liuzhenm@mail.ustc.edu.cn"
 
-" vim-instant-makrdown configuration
+" vim-instant-markdown configuration
 let g:instant_markdown_autostart = 0
 let g:instant_markdown_slow = 1
 
