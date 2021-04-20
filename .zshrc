@@ -2,13 +2,13 @@
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
-export ZSH="/home/zhenliu/.oh-my-zsh"
+export ZSH="/home/kvgroup/.oh-my-zsh"
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
-ZSH_THEME="robbyrussell"
+ZSH_THEME="ys"
 
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
@@ -68,7 +68,7 @@ ZSH_THEME="robbyrussell"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git sudo zsh-autosuggestions zsh-syntax-highlighting)
+plugins=(git autojump sudo zsh-autosuggestions zsh-syntax-highlighting)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -99,15 +99,30 @@ source $ZSH/oh-my-zsh.sh
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 # set proxy
 function setproxy() {
-    export http_proxy=socks5://127.0.0.1:1080
-    export HTTPS_PROXY=socks5://127.0.0.1:1080
+  export http_proxy=socks5://192.168.1.2:7891
+  export HTTPS_PROXY=socks5://192.168.1.2:7891
 }
 
 # unset proxy
 function unsetproxy() {
-    unset http_proxy HTTPS_PROXY 
+  unset http_proxy HTTPS_PROXY
 }
-alias ip="curl https://ip.cn"
-VISUAL=vim; 
+VISUAL=vim;
 export VISUAL EDITOR=vim;
 export EDITOR
+# >>> conda initialize >>>
+# !! Contents within this block are managed by 'conda init' !!
+__conda_setup="$('/home/kvgroup/miniconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
+if [ $? -eq 0 ]; then
+  eval "$__conda_setup"
+else
+  if [ -f "/home/kvgroup/miniconda3/etc/profile.d/conda.sh" ]; then
+    . "/home/kvgroup/miniconda3/etc/profile.d/conda.sh"
+  else
+    export PATH="/home/kvgroup/miniconda3/bin:$PATH"
+  fi
+fi
+unset __conda_setup
+[[ -s /home/kvgroup/.autojump/etc/profile.d/autojump.sh  ]] && source /home/kvgroup/.autojump/etc/profile.d/autojump.sh
+
+autoload -U compinit && compinit -u
