@@ -1,4 +1,4 @@
-let g:python3_host_prog = '/home/zach/miniconda3/envs/neovim_py/bin/python'
+let g:python3_host_prog = '/home/kvgroup/miniconda3/envs/neovim_py/bin/python'
 
 set wildmenu "auto completion while tapping tab
 set ignorecase "ignore case
@@ -32,10 +32,10 @@ set scrolloff=10
 set noswapfile
 set nobackup
 set undofile
-if empty(glob('~/.vim/undo'))
-  silent !mkdir -p ~/.vim/undo
+if empty(glob('~/.nvim/undo'))
+  silent !mkdir -p ~/.nvim/undo
 endif
-set undodir=~/.vim/.undo/
+set undodir=~/.nvim/.undo/
 set cc=100
 "
 " Give more space for displaying messages.
@@ -84,7 +84,10 @@ filetype on "启动文件类型检查"
 filetype plugin on "运行vim加载文件类型插件"
 
 nnoremap <silent> U 5j
-nnoremap <silent> E 5k
+nnoremap <silent> I 5k
+vnoremap <silent> U 5j
+vnoremap <silent> I 5k
+
 
 
 " Compile function
@@ -175,7 +178,7 @@ call plug#end()
 
 let g:coc_global_extensions = [
       \ 'coc-explorer',
-      \ 'coc-rls',
+      \ 'coc-rust-analyzer',
       \ 'coc-json',
       \ 'coc-clangd']
 "coc explorer config"
@@ -368,11 +371,11 @@ let g:vista#renderer#icons = {
 " Create a new tab with tu
 noremap tu :tabe<CR>
 " Move around tabs with tn and ti
-noremap tn :-tabnext<CR>
-noremap ti :+tabnext<CR>
+noremap tn :+tabnext<CR>
+noremap ti :-tabnext<CR>
 " Move the tabs with tmn and tmi
-noremap tmn :-tabmove<CR>
-noremap tmi :+tabmove<CR>
+noremap tmn :+tabmove<CR>
+noremap tmi :-tabmove<CR>
 
 " xtabline
 let g:xtabline_settings = {}
