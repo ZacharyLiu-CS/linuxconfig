@@ -157,5 +157,8 @@
     ">>": "gitUnstage"
   },
   "clangd.enabled": true,
-  "clangd.semanticHighlighting": true
+  "clangd.semanticHighlighting": true,
+  "coc.preferences.semanticTokensHighlights": false,
+  "rust-analyzer.enable": true,
+  "rust-analyzer.server.path": "/home/kvgroup/.cargo/bin/rust-analyzer"
 }

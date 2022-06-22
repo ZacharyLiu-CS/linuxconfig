@@ -26,4 +26,5 @@ git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:
 
 git clone git://github.com/joelthelion/autojump.git ~
 cd ~/autojump && ./install.py
-sudo apt install ripgrep
+sudo apt install ripgrep # use to search from file
+sudo apt install brear # use to generate from makefile to compile_commandls.json

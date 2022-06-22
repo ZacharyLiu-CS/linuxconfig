@@ -140,6 +140,9 @@ Plug 'ajmwagar/vim-deus'
 "Theme 2 space-vim-dark
 Plug 'liuchengxu/space-vim-dark'
 
+"Theme 3 gruvbox
+Plug 'morhetz/gruvbox'
+
 "auto pairs
 Plug 'jiangmiao/auto-pairs'
 
@@ -309,8 +312,8 @@ command! -nargs=0 OR   :call     CocAction('runCommand', 'editor.action.organize
 " NOTE: Please see `:h coc-status` for integrations with external plugins that
 " provide custom statusline: lightline.vim, vim-airline.
 set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
-let g:indent_guides_guide_size            = 1  " 指定对齐线的尺寸
-let g:indent_guides_start_level           = 2  " 从第二层开始可视化显示缩进
+let g:indent_guides_guide_size            = 1  " set the intent guide line size
+let g:indent_guides_start_level           = 2  " intent from level 2
 
 
 "start to configure the plugs managed by vim-plug
@@ -328,8 +331,13 @@ let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
 " set background=dark    " Setting dark mode
 " colorscheme deus
 " let g:deus_termcolors=256
-let g:space_vim_dark_background = 234
-color space-vim-dark
+
+" let g:space_vim_dark_background = 234
+" colorscheme space-vim-dark
+
+" gruvbox, backgroud = dark/light
+colorscheme gruvbox
+set background=light
 
 "auto pairs configuration
 let g:AutoPairs = {'(':')', '[':']', '{':'}', '<':'>',"'":"'",'"':'"' ,"<<":""}
@@ -346,10 +354,15 @@ nmap <LEADER>cu g<c
 vmap <LEADER>cu g<
 
 " float terminal configuration
-nnoremap <LEADER>st :FloatermNew --height=0.6 --width=0.6 --wintype=floating --name=floaterm1 --autoclose=2<CR>
-nnoremap <LEADER>zf :FloatermNew --height=0.6 --width=0.6 --wintype=floating --name=floaterm2 --autoclose=2 fzf --preview 'cat {}'<CR>
-nnoremap <LEADER>lg :FloatermNew --height=0.6 --width=0.6 --wintype=floating --name=floaterm3 --autoclose=2 lazygit<CR>
-nnoremap <LEADER>ra :FloatermNew --height=0.6 --width=0.6 --wintype=floating --name=floaterm4 --autoclose=2 ranger <CR>
+
+let g:floaterm_wintype      = 'split'      
+let g:floaterm_height       = 0.3
+let g:floaterm_position     = 'bottom'
+let g:floaterm_autoclose    = 2
+
+"create and toggle terminal by keymap
+let g:floaterm_keymap_new    = '<F9>'
+let g:floaterm_keymap_toggle = '<F10>'
 
 "vim-visual-multi
 let g:VM_maps                       = {}
@@ -444,17 +457,14 @@ let g:vmt_cycle_list_item_markers = 1
 
 " let g:fzf_preview_window = []
 " config the fzf windows position and size
-let g:fzf_layout = { 'down': '~40%' }
+let g:fzf_layout = { 'down': '~30%' }
 " config the preview windows size
-let g:fzf_preview_window = ['up:50%:hidden', 'ctrl-/']
+" let g:fzf_preview_window = ['up:50%:hidden', 'ctrl-/']
+let g:fzf_preview_window = ['up:50%', 'ctrl-/']
 
-nmap <leader><tab> <plug>(fzf-maps-n)
-xmap <leader><tab> <plug>(fzf-maps-x)
-omap <leader><tab> <plug>(fzf-maps-o)
-
-imap <c-x><c-k> <plug>(fzf-complete-word)
-imap <c-x><c-f> <plug>(fzf-complete-path)
-imap <c-x><c-l> <plug>(fzf-complete-line)
+nmap <leader><tab> : Rg<CR>
+" xmap <leader><tab> <plug>(fzf-maps-x)
+" omap <leader><tab> <plug>(fzf-maps-o)
 
 command! -bang -nargs=* GGrep
   \ call fzf#vim#grep(
@@ -467,4 +477,5 @@ command! -bang -nargs=* Rg
   \   fzf#vim#with_preview(), <bang>0)
 
 command! -bang -nargs=* Flines call fzf#vim#grep('rg --line-number --no-heading '.shellescape(<q-args>), 0, <bang>0)
+
 
