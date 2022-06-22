@@ -26,3 +26,4 @@ git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:
 
 git clone git://github.com/joelthelion/autojump.git ~
 cd ~/autojump && ./install.py
+sudo apt install ripgrep

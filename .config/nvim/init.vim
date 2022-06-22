@@ -1,6 +1,7 @@
 let g:python3_host_prog = '/home/kvgroup/miniconda3/envs/neovim_py/bin/python'
 
 set wildmenu "auto completion while tapping tab
+set encoding=utf-8
 set ignorecase "ignore case
 set number "show line number
 set relativenumber "relative number
@@ -9,7 +10,6 @@ set ruler "show the ruler of the cursor
 set autoread "auto read while file is modified outside
 set autowrite "set auto save content
 set autochdir "make the dir change according to the file
-set nocp "use vim instead of vi
 set mouse=a "open mouse support
 set smartindent "c/c++ auto indent"
 set autoindent "auto indent refet to the indentation of the previous line
@@ -78,10 +78,10 @@ noremap <leader><left> :vertical resize-5<CR>
 noremap <leader><right> :vertical resize+5<CR>
 
 
-syn on "开启语法高亮功能"
-filetype indent on "根据文件类型进行缩进"
-filetype on "启动文件类型检查"
-filetype plugin on "运行vim加载文件类型插件"
+syn on "syntax on"
+filetype indent on "auto indent by filetype"
+filetype on "open file type check"
+filetype plugin on "enable plugin"
 
 nnoremap <silent> U 5j
 nnoremap <silent> I 5k
@@ -134,8 +134,11 @@ Plug 'Chiel92/vim-autoformat'
 "Auto Save
 Plug 'vim-scripts/vim-auto-save'
 
-"Theme
+"Theme 1 vim-deus
 Plug 'ajmwagar/vim-deus'
+
+"Theme 2 space-vim-dark
+Plug 'liuchengxu/space-vim-dark'
 
 "auto pairs
 Plug 'jiangmiao/auto-pairs'
@@ -172,6 +175,10 @@ Plug 'suan/vim-instant-markdown', {'for': 'markdown'}
 
 " generate table of contents(toc)
 Plug 'mzlogin/vim-markdown-toc'
+
+" fzf plug
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim'
 
 call plug#end()
 
@@ -318,10 +325,11 @@ set termguicolors
 let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
 let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
 
-set background=dark    " Setting dark mode
-colorscheme deus
-let g:deus_termcolors=256
-
+" set background=dark    " Setting dark mode
+" colorscheme deus
+" let g:deus_termcolors=256
+let g:space_vim_dark_background = 234
+color space-vim-dark
 
 "auto pairs configuration
 let g:AutoPairs = {'(':')', '[':']', '{':'}', '<':'>',"'":"'",'"':'"' ,"<<":""}
@@ -433,3 +441,30 @@ let g:vmt_cycle_list_item_markers = 1
 "
 " 4. :GenTocMarked
 " Generate table of contents for iamcco/markdown-preview.vim which use Marked markdown parser.
+
+" let g:fzf_preview_window = []
+" config the fzf windows position and size
+let g:fzf_layout = { 'down': '~40%' }
+" config the preview windows size
+let g:fzf_preview_window = ['up:50%:hidden', 'ctrl-/']
+
+nmap <leader><tab> <plug>(fzf-maps-n)
+xmap <leader><tab> <plug>(fzf-maps-x)
+omap <leader><tab> <plug>(fzf-maps-o)
+
+imap <c-x><c-k> <plug>(fzf-complete-word)
+imap <c-x><c-f> <plug>(fzf-complete-path)
+imap <c-x><c-l> <plug>(fzf-complete-line)
+
+command! -bang -nargs=* GGrep
+  \ call fzf#vim#grep(
+  \   'git grep --line-number -- '.shellescape(<q-args>), 0,
+  \   fzf#vim#with_preview({'dir': systemlist('git rev-parse --show-toplevel')[0]}), <bang>0)
+
+command! -bang -nargs=* Rg
+  \ call fzf#vim#grep(
+  \   'rg --column --line-number --no-heading --color=always --smart-case -- '.shellescape(<q-args>), 1,
+  \   fzf#vim#with_preview(), <bang>0)
+
+command! -bang -nargs=* Flines call fzf#vim#grep('rg --line-number --no-heading '.shellescape(<q-args>), 0, <bang>0)
+
