@@ -121,7 +121,9 @@ endfunc
 
 
 call plug#begin('~/.vim/plugged')
+
 Plug 'vim-airline/vim-airline'
+
 Plug 'vim-airline/vim-airline-themes'
 
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
@@ -185,11 +187,21 @@ Plug 'junegunn/fzf.vim'
 
 call plug#end()
 
+" config for vim-airline
+" * enable/disable coc integration >
+let g:airline#extensions#coc#enabled = 1
+" change error symbol: >
+let airline#extensions#coc#error_symbol = 'E:'
+" change warning symbol: >
+let airline#extensions#coc#warning_symbol = 'W:'
+" enable/disable coc status display >
+let g:airline#extensions#coc#show_coc_status = 1
 
 let g:coc_global_extensions = [
       \ 'coc-explorer',
       \ 'coc-rust-analyzer',
       \ 'coc-json',
+      \ 'coc-lua',
       \ 'coc-clangd']
 "coc explorer config"
 :nmap <space>e :CocCommand explorer --preset floating<CR>
@@ -337,7 +349,7 @@ let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
 
 " gruvbox, backgroud = dark/light
 colorscheme gruvbox
-set background=light
+set background=dark
 
 "auto pairs configuration
 let g:AutoPairs = {'(':')', '[':']', '{':'}', '<':'>',"'":"'",'"':'"' ,"<<":""}
@@ -355,7 +367,7 @@ vmap <LEADER>cu g<
 
 " float terminal configuration
 
-let g:floaterm_wintype      = 'split'      
+let g:floaterm_wintype      = 'split'
 let g:floaterm_height       = 0.3
 let g:floaterm_position     = 'bottom'
 let g:floaterm_autoclose    = 2
