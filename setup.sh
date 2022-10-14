@@ -12,7 +12,6 @@ git config --global user.email "liuzhenm@mail.ustc.edu.cn"
 git config --global user.name "liuzhen"
 sudo pacman -S net-tools
 sudo pacman -S gdb
-sudo pacman -S wireshark-qt
 sudo pacman -S openssh
 sudo systemctl enable ssh
 sudo systemctl start sshd
