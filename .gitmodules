@@ -1,0 +1,3 @@
+[submodule ".config/nvim_luaconfig"]
+	path = .config/nvim_luaconfig
+	url = https://github.com/ZacharyLiu-CS/neovim_luafiles.git
