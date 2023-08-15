@@ -126,4 +126,5 @@ unset __conda_setup
 [[ -s /home/kvgroup/.autojump/etc/profile.d/autojump.sh  ]] && source /home/kvgroup/.autojump/etc/profile.d/autojump.sh
 
 autoload -U compinit && compinit -u
-export TERM=screen-256color
+
+export TERM='xterm-256color'
