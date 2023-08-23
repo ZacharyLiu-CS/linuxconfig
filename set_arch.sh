@@ -1,7 +1,7 @@
 sudo pacman-mirrors -i -c China -m rank 
 sudo pacman -Syyu
 sudo pacman -S neovim
-sudo sed -i '$a[archlinuxcn]\n = Server = https://mirrors.tuna.tsinghua.edu.cn/archlinuxcn/$arch' /etc/pacman.conf
+sudo sed -i '$a[archlinuxcn]\nServer = https://mirrors.tuna.tsinghua.edu.cn/archlinuxcn/$arch' /etc/pacman.conf
 sudo pacman -Syy && sudo pacman -S archlinuxcn-keyring
 sudo yay -S zsh
 bash ./install_oh_my_zsh.sh
