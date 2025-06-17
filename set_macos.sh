@@ -78,7 +78,7 @@ else
     echo "[CLONE] Installing autojump..."
     if git clone git@github.com:joelthelion/autojump.git "$autojump_dir"; then
         cd "$autojump_dir" || exit 1
-        if python ./install.py; then
+        if python3 ./install.py; then
             echo "[SUCCESS] autojump installed. Add 'source \$HOME/.autojump/etc/profile.d/autojump.sh' to your .zshrc"
         else
             echo "[ERROR] autojump installation script failed. Check Python environment."

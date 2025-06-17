@@ -49,4 +49,4 @@ nnoremap <silent> <C-j> 5j
 nnoremap <silent> <C-k> 5k
 nnoremap <silent> <C-h> 5h
 nnoremap <silent> <C-l> 5l
-
+syntax enable

@@ -119,3 +119,4 @@ alias getip="curl ipinfo.io"
 autoload -U compinit && compinit -u
 
 export TERM='xterm-256color'
+alias lg=lazygit
