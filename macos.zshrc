@@ -113,6 +113,7 @@ VISUAL=vim;
 export VISUAL EDITOR=vim;
 export EDITOR
 alias getip="curl ipinfo.io"
+alias rm=trash
 
 [[ -s /Users/macos_name/.autojump/etc/profile.d/autojump.sh  ]] && source /Users/macos_name/.autojump/etc/profile.d/autojump.sh
 
